@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "about": "About",
+    "impact": "Impact",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "home": "Home",
+    "resume": "Resume",
+    "resumeEnglish": "English",
+    "resumeJapanese": "Japanese"
+  },
+  "home": {
+    "scrollDown": "SCROLL DOWN",
+    "words": [
+  "Developer",
+  "Designer",
+  "Programmer",
+  "Creator",
+  "Problem Solver",
+  "Frontend",
+  "Vue.js",
+  "JavaScript"
+],
+    "tagline": "Turning ideas into thoughtful web experiences",
+    "cta": "Let's connect",
+    "exploreCta": "Let's connect",
+    "role": "Front-End Developer",
+    "subtitle": "Building modern, responsive, and user-friendly web experiences.",
+    "location": "Chennai, Tamil Nadu, India"
+  },
+  "impact": {
+    "quote": "This portfolio is a snapshot of my problem-solving mindset, design decisions, and the way I turn ideas into reliable interfaces."
+  },
+  "about": {
+    "title": "About me",
+    "paragraph1": "I'm Mohamed Asan, a Front-End Developer passionate about building modern, responsive, and interactive websites that provide an excellent user experience.",
+    "paragraph2": "I enjoy transforming ideas into beautiful and functional web applications using HTML, CSS, JavaScript, Vue.js, and modern web technologies. I continuously learn new skills and love creating clean, professional user interfaces."
+  },
+  "skills": {
+    "title": "Skills",
+    "bgText": "SKILLS",
+    "taglineStatic": "I constantly try to",
+    "taglineWords": ["Improve", "Learn", "Adapt", "Grow"]
+  },
+  "statement": {
+    "dividerText": "Each project shaped",
+    "dividerText2": "how I work today.",
+    "selected": "SELECTED",
+    "projects": "PROJECTS",
+    "showcase": "SHOWCASE"
+  },
+  "contact": {
+    "title": "Conversation comes first",
+    "subtitle": "That's often where good things begin.",
+    "formTitle": "Open to opportunities",
+    "nameLabel": "Name",
+    "namePlaceholder": "How should I call you?",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Where can I reach you?",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Anything you'd like to discuss?",
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Please enter your message."
+    },
+    "warnings": {
+      "emailDomainTypo": "Did you mean {domain}?"
+    },
+    "requiredFieldMessage": "Please fill out this field.",
+    "send": "Send",
+    "sendLoading": "Sending...",
+    "successTitle": "Thanks for getting in touch.",
+    "successMessage": "I've received your message and will follow up soon."
+  },
+  "footer": {
+  "github": "GITHUB",
+  "linkedin": "LINKEDIN",
+  "inquiry": "INQUIRY",
+  "location": "CHENNAI, TAMIL NADU",
+  "tagline": "BUILDING MODERN WEB EXPERIENCES",
+  "rights": "© All Rights Reserved.",
+  "name": "ASAN"
+},
+  "projects": {
+    "jlptLab": "JLPT Practice Lab",
+    "jlptLabSubtitle": "Interactive JLPT practice platform built from real exam patterns to make learning clearer and less stressful."
+  },
+  "projectDetail": {
+    "back": "Back",
+    "status": "In Planning & Development",
+    "title": "JLPT Study Project",
+    "sections": {
+      "overview": {
+        "title": "Project Overview",
+        "p1": "This project started from my own experience studying for and taking the JLPT N2.",
+        "p2": "While studying, I realized that memorizing grammar and kanji in isolation has its limits. No matter how much you memorize, without actually solving real JLPT questions, it's hard to see how grammar is used and how it's tested. There's so much you can only truly understand by encountering grammar within question passages and answer choices.",
+        "p3": "At the same time, going through full past exams every time isn't realistic either. With so many questions and the time they require, you can get exhausted before even starting to review. Especially when studying alongside work and daily life, long practice sessions can become stressful and lead to anxiety and tension.",
+        "p4": "These struggles inspired me to start this project."
+      },
+      "coreIdea": {
+        "title": "Core Concept",
+        "p1": "At the heart of this project is the idea of learning and deepening understanding through past JLPT questions.",
+        "p2": "Rather than repeatedly solving full exam papers, the goal is to break past questions into small, manageable practice units where each question can be reviewed carefully. For each question, the platform clearly explains which grammar pattern is being used, why the correct answer is correct, and why the other options are wrong. The emphasis is on naturally understanding grammar patterns through problem-solving, rather than relying on memorization."
+      },
+      "userFriendly": {
+        "title": "Designed with Usability in Mind",
+        "p1": "This project is designed based on my own struggles and difficulties during studying.",
+        "p2": "The layout is kept simple and easy to read, so learners can study calmly without unnecessary anxiety or stress. The aim is to create a comfortable learning experience where you can think, \"Let me just practice a little today,\" without feeling overwhelmed."
+      },
+      "status": {
+        "title": "Current Development Status",
+        "p1": "This project is currently in its early stages of development.",
+        "p2": "While planning the overall site structure and practice flow, UI design is being refined in Figma. The current focus is on building a solid, practical practice experience using past JLPT questions."
+      },
+      "purpose": {
+        "title": "Project Purpose",
+        "p1": "This project aims to help JLPT learners understand how questions are constructed and face the exam with confidence. Reducing anxiety, learning with understanding, and approaching the real test calmly. That's the goal of this practical review platform."
+      }
+    }
+  }
+}
+
