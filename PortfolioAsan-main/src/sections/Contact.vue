@@ -39,22 +39,17 @@
           <div v-else class="contact-form-wrapper">
             <h3 class="contact-form-title">{{ t('contact.formTitle') }}</h3>
             <form
-              ref="formRef"
-              class="contact-form"
-              name="contact"
-              method="POST"
-              novalidate
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              @submit.prevent="handleSubmit"
-            >
-              <input type="hidden" name="form-name" value="contact" />
-              <!-- Honeypot fields for bot detection -->
-              <p style="display: none;">
-                <label>Don't fill this out: <input name="bot-field" /></label>
-              </p>
-              <input type="text" name="website" style="position: absolute; left: -9999px;" tabindex="-1" autocomplete="off" />
-              <input type="hidden" name="_gotcha" />
+  ref="formRef"
+  class="contact-form"
+  method="POST"
+  action="https://formspree.io/f/mpqedoej"
+  novalidate
+  @submit.prevent="handleSubmit"
+>
+<input type="hidden" name="_subject" value="Portfolio Contact">
+<input type="text" name="_gotcha" style="display:none">
+<input type="text" name="website" style="display:none">
+              
               <label class="contact-field">
                 <span class="contact-label">{{ t('contact.nameLabel') }}</span>
                 <input
@@ -460,18 +455,20 @@ const handleSubmit = async () => {
 
   isSubmitting.value = true;
 
-  const formData = new URLSearchParams();
-  formData.append('form-name', 'contact');
-  formData.append('name', name);
-  formData.append('email', email);
-  formData.append('message', message);
+   try{
 
-  try {
-    const response = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
-    });
+  const response = await fetch('https://formspree.io/f/mpqedoej', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    message,
+  }),
+});
 
     if (!response.ok) {
       console.error('Form submission failed:', response.status, response.statusText);
