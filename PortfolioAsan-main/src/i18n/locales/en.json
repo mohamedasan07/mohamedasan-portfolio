@@ -84,39 +84,39 @@
   "name": "ASAN"
 },
   "projects": {
-    "jlptLab": "JLPT Practice Lab",
-    "jlptLabSubtitle": "Interactive JLPT practice platform built from real exam patterns to make learning clearer and less stressful."
+    "chronosguard": "ChronosGuard",
+    "chronosguardSubtitle": "Blockchain-powered platform for secure digital asset registration, verification, and IP protection using immutable ownership records."
   },
   "projectDetail": {
     "back": "Back",
-    "status": "In Planning & Development",
-    "title": "JLPT Study Project",
+    "status": "Live · Blockchain Platform",
+    "title": "ChronosGuard",
     "sections": {
       "overview": {
         "title": "Project Overview",
-        "p1": "This project started from my own experience studying for and taking the JLPT N2.",
-        "p2": "While studying, I realized that memorizing grammar and kanji in isolation has its limits. No matter how much you memorize, without actually solving real JLPT questions, it's hard to see how grammar is used and how it's tested. There's so much you can only truly understand by encountering grammar within question passages and answer choices.",
-        "p3": "At the same time, going through full past exams every time isn't realistic either. With so many questions and the time they require, you can get exhausted before even starting to review. Especially when studying alongside work and daily life, long practice sessions can become stressful and lead to anxiety and tension.",
-        "p4": "These struggles inspired me to start this project."
+        "p1": "ChronosGuard is a blockchain-powered web application built to solve a fundamental problem in the digital age: proving ownership of creative work.",
+        "p2": "Creators — from artists and musicians to developers and writers — often struggle to protect their digital assets. Traditional copyright systems are slow, opaque, and inaccessible to independent creators. ChronosGuard changes that by leveraging blockchain immutability and IPFS decentralised storage.",
+        "p3": "By anchoring ownership records to the blockchain at the moment of creation, ChronosGuard provides tamper-proof, timestamped proof that no central authority can alter or revoke.",
+        "p4": "This project was built to make intellectual property protection as simple as uploading a file."
       },
       "coreIdea": {
         "title": "Core Concept",
-        "p1": "At the heart of this project is the idea of learning and deepening understanding through past JLPT questions.",
-        "p2": "Rather than repeatedly solving full exam papers, the goal is to break past questions into small, manageable practice units where each question can be reviewed carefully. For each question, the platform clearly explains which grammar pattern is being used, why the correct answer is correct, and why the other options are wrong. The emphasis is on naturally understanding grammar patterns through problem-solving, rather than relying on memorization."
+        "p1": "The platform's foundation is the idea that ownership should be self-sovereign — controlled by the creator, not a corporation or government registry.",
+        "p2": "ChronosGuard uses IPFS to store digital assets in a distributed network, and records the corresponding content hash and ownership metadata on-chain. This dual-layer approach ensures both the asset and its provenance are permanently verifiable by anyone, at any time, with no single point of failure."
       },
       "userFriendly": {
-        "title": "Designed with Usability in Mind",
-        "p1": "This project is designed based on my own struggles and difficulties during studying.",
-        "p2": "The layout is kept simple and easy to read, so learners can study calmly without unnecessary anxiety or stress. The aim is to create a comfortable learning experience where you can think, \"Let me just practice a little today,\" without feeling overwhelmed."
+        "title": "Built for Creators, Not Lawyers",
+        "p1": "ChronosGuard strips away the complexity that typically surrounds IP protection. The interface is clean and intuitive — creators register their work in seconds without needing any blockchain knowledge.",
+        "p2": "The verification flow is equally simple: anyone can check the authenticity of a digital asset by querying its on-chain record, returning a certificate of ownership with a timestamp and creator wallet address."
       },
       "status": {
-        "title": "Current Development Status",
-        "p1": "This project is currently in its early stages of development.",
-        "p2": "While planning the overall site structure and practice flow, UI design is being refined in Figma. The current focus is on building a solid, practical practice experience using past JLPT questions."
+        "title": "Platform Status",
+        "p1": "ChronosGuard is live and deployed on Netlify, with smart contracts running on a test network.",
+        "p2": "Current development focus is on expanding support for additional file formats, adding bulk registration, and preparing for mainnet deployment with gas optimisation."
       },
       "purpose": {
         "title": "Project Purpose",
-        "p1": "This project aims to help JLPT learners understand how questions are constructed and face the exam with confidence. Reducing anxiety, learning with understanding, and approaching the real test calmly. That's the goal of this practical review platform."
+        "p1": "ChronosGuard exists to democratise intellectual property protection — giving every creator, regardless of resources, an immutable, globally verifiable record of their work the moment it's made."
       }
     }
   }

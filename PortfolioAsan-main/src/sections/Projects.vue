@@ -2,301 +2,97 @@
   <section
     id="projects"
     ref="projectsSection"
-    class="projects-section relative max-w-300 mx-auto py-8 pb-20 mb-24 md:mb-32 px-[clamp(1rem,5vw,4rem)]"
+    class="projects-section"
   >
-    <div
-      ref="imagePreview"
-      class="project-image-preview absolute w-80 h-65 rounded-lg overflow-hidden opacity-0 pointer-events-none z-100"
-      :class="{ 'is-visible': hoveredIndex !== null }"
-    >
-      <img
-        v-for="(project, index) in projects"
-        :key="project.id"
-        :src="project.image"
-        :alt="project.title"
-        class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-400"
-        :class="{ 'is-active': hoveredIndex === index }"
-        :width="project.width"
-        :height="project.height"
-        loading="lazy"
-        decoding="async"
-      />
+    <!-- Section header -->
+    <div ref="headerRef" class="projects-header">
+      <div class="projects-header-line projects-header-line-left"></div>
+      <span class="projects-header-label">Featured Work</span>
+      <div class="projects-header-line projects-header-line-right"></div>
     </div>
 
-    <div class="flex flex-col" @mousemove="handleListMouseMove" @mouseleave="handleListLeave">
-      <article
-        v-for="(project, index) in projects"
-        :key="project.id"
-        class="project-item flex items-start gap-[0.2rem] pb-[0.2em] -mt-[2.2rem] -mb-[0.2em] border-b border-(--project-border-color) relative overflow-visible cursor-pointer"
-        :class="{ 'project-item-first': index === 0, 'is-hovered': hoveredIndex === index }"
-        ref="projectItems"
-        role="link"
-        tabindex="0"
-        @click="goToProject(project)"
-        @keydown.enter.prevent="goToProject(project)"
-        @keydown.space.prevent="goToProject(project)"
-      >
-        <div class="flex-1 mt-0">
-          <div class="project-mobile-image hidden w-full rounded-[10px] overflow-hidden mb-5 bg-(--project-image-overlay)" aria-hidden="true">
-            <img
-              :src="project.imageMobile"
-              :alt="project.title"
-              class="block w-full h-auto object-cover"
-              :width="project.width"
-              :height="project.height"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <h3 class="project-title inline-block m-0 font-bold leading-[1.05] tracking-tight cursor-pointer text-(--project-title-color)">
-            <span class="inline-flex items-center gap-0">
-              <span class="project-index-mobile font-medium text-(--theme-text-muted) leading-none">_{{ String(index + 1).padStart(2, '0') }}.</span>
-              <span class="project-index font-medium text-(--theme-text-muted) leading-none">_{{ String(index + 1).padStart(2, '0') }}.</span>
-              <span class="project-title-text inline-block shrink-0 w-fit relative pb-[0.22em] text-(--project-title-color)">
-                <span class="project-title-base inline-block pb-[0.15em]">{{ project.title }}</span>
-                <span ref="titleAnimEls" class="project-title-anim absolute top-0 left-0 w-full inline-block pb-[0.22em] pointer-events-none" aria-hidden="true">{{ project.title }}</span>
-              </span>
-              <span ref="lottieEls" class="project-title-lottie w-[3em] h-[3em] pointer-events-none opacity-0 -ml-[0.7em]" aria-hidden="true"></span>
-            </span>
-          </h3>
-          <div class="project-tags flex flex-wrap gap-4 items-center -mt-16 pb-4 max-md:-mt-7">
-            <span
-              v-for="(tag, tagIndex) in project.tags"
-              :key="tagIndex"
-              class="project-tag relative text-(--project-meta-color)"
-            >
-              {{ tag }}
-            </span>
-          </div>
+    <!-- Featured project card -->
+    <div
+      ref="cardRef"
+      class="featured-card"
+      :class="{ 'is-hovered': isHovered }"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
+    >
+      <!-- Image side -->
+      <div class="featured-card-image-wrap" aria-hidden="true">
+        <div class="featured-card-image-inner">
+          <img
+  :src="chronosguardImg"
+            alt="ChronosGuard – Blockchain IP Protection Platform"
+            class="featured-card-img"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="featured-card-image-overlay"></div>
         </div>
-      </article>
+        <!-- Floating index badge -->
+        <div class="featured-card-index" aria-hidden="true">
+          <span class="featured-card-index-num">_01.</span>
+        </div>
+      </div>
+
+      <!-- Content side -->
+      <div class="featured-card-content">
+        <div class="featured-card-meta">
+          <span class="featured-card-type">Blockchain · IP Protection</span>
+        </div>
+
+        <h3 class="featured-card-title">
+          <span class="featured-card-title-base">ChronosGuard</span>
+        </h3>
+
+        <p class="featured-card-desc">
+          A blockchain-powered web application that enables creators to securely
+          register, verify, and protect digital assets using immutable ownership
+          records — focused on digital copyright protection and ownership
+          verification.
+        </p>
+
+        <div class="featured-card-tags" aria-label="Tech stack">
+          <span class="featured-tag">HTML</span>
+          <span class="featured-tag">CSS</span>
+          <span class="featured-tag">JavaScript</span>
+          <span class="featured-tag">Vue.js</span>
+          <span class="featured-tag">Blockchain</span>
+          <span class="featured-tag">IPFS</span>
+        </div>
+
+        <a
+          href="https://chimerical-parfait-c2be34.netlify.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="featured-card-cta"
+          aria-label="View ChronosGuard live demo"
+        >
+          <span class="featured-cta-text">View Live</span>
+          <span class="featured-cta-arrow" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { computed, inject, nextTick, onMounted, onUnmounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-import progress1Img from '@/assets/progress1.jpg';
-import progress1ImgSmall from '@/assets/progress1-1280.jpg';
+import { onMounted, onUnmounted, ref } from 'vue';
+import chronosguardImg from "@/assets/projects/chronosguard.jpeg";
 
-const { t } = useI18n();
-const router = useRouter();
-const startPageTransition = inject('startPageTransition', null);
 const projectsSection = ref(null);
-const projectItems = ref([]);
-const titleAnimEls = ref([]);
-const lottieEls = ref([]);
-const imagePreview = ref(null);
-const hoveredIndex = ref(null);
-
-const lottieAnims = [];
-const lottieEndHandlers = [];
-const lottieTimers = [];
-const lottieStarted = [];
-const lottieHoldFrames = [];
-let lottieLib = null;
-let lottieMediaQuery = null;
-let lottieMediaHandler = null;
-let threadLineDownRightAnim = null;
-const resetTitleAnim = (index) => {
-  const animEl = titleAnimEls.value[index];
-  if (!animEl) return;
-  animEl.classList.add('is-resetting');
-  animEl.style.backgroundSize = '0% 100%';
-  // Force reflow to apply the no-transition state immediately.
-  void animEl.offsetHeight;
-  animEl.classList.remove('is-resetting');
-  animEl.style.removeProperty('background-size');
-};
-
-const projects = computed(() => [
-  {
-    id: 1,
-    title: t('projects.jlptLab'),
-    tags: [t('projects.jlptLabSubtitle')],
-    image: progress1Img,
-    imageMobile: progress1ImgSmall,
-    width: 4500,
-    height: 4500
-  }
-]);
+const headerRef = ref(null);
+const cardRef = ref(null);
+const isHovered = ref(false);
 
 let projectsTimeline = null;
-
-const destroyLottie = () => {
-  lottieTimers.forEach((timer) => window.clearTimeout(timer));
-  lottieTimers.length = 0;
-  lottieAnims.forEach((anim, index) => {
-    const animEl = titleAnimEls.value[index];
-    if (animEl && lottieEndHandlers[index]) {
-      animEl.removeEventListener('transitionend', lottieEndHandlers[index]);
-    }
-    anim?.destroy();
-  });
-  lottieAnims.length = 0;
-  lottieEndHandlers.length = 0;
-  lottieStarted.length = 0;
-  lottieHoldFrames.length = 0;
-  lottieEls.value.forEach((el) => el?.classList.remove('is-playing'));
-};
-
-const initLottie = async () => {
-  if (window.matchMedia('(max-width: 768px)').matches) return;
-  if (lottieAnims.length) return;
-  if (!lottieLib) {
-    const module = await import('lottie-web');
-    lottieLib = module?.default ?? module;
-  }
-  if (!threadLineDownRightAnim) {
-    const module = await import('@/assets/lottie/thread-line-down-right.json');
-    threadLineDownRightAnim = module?.default ?? module;
-  }
-  await nextTick();
-  lottieEls.value.forEach((el, index) => {
-    if (!el) return;
-    const anim = lottieLib.loadAnimation({
-      container: el,
-      renderer: 'svg',
-      loop: false,
-      autoplay: false,
-      animationData: threadLineDownRightAnim
-    });
-    anim.setSpeed(1);
-    const totalFrames = Math.max(anim.getDuration(true), 1);
-    lottieHoldFrames[index] = Math.max(Math.floor(totalFrames * 0.85), 1);
-    lottieAnims[index] = anim;
-  });
-};
-
-const handleListMouseMove = (event) => {
-  if (!projectItems.value.length) return;
-
-  const mouseY = event.clientY;
-  let targetIndex = null;
-
-  for (let i = 0; i < projectItems.value.length; i++) {
-    const item = projectItems.value[i];
-    if (!item) continue;
-    const rect = item.getBoundingClientRect();
-    const dividerY = rect.bottom;
-
-    if (i === 0) {
-      if (mouseY >= rect.top && mouseY < dividerY) {
-        targetIndex = 0;
-        break;
-      }
-    } else {
-      const prevItem = projectItems.value[i - 1];
-      const prevDividerY = prevItem.getBoundingClientRect().bottom;
-
-      if (mouseY >= prevDividerY && (i === projectItems.value.length - 1 || mouseY < dividerY)) {
-        targetIndex = i;
-        break;
-      }
-    }
-  }
-
-  if (targetIndex !== null && targetIndex !== hoveredIndex.value) {
-    handleTitleEnter(targetIndex);
-  }
-};
-
-const handleTitleEnter = (index) => {
-  const prevIndex = hoveredIndex.value;
-  hoveredIndex.value = index;
-
-  if (imagePreview.value && projectItems.value[index]) {
-    const item = projectItems.value[index];
-    const itemRect = item.getBoundingClientRect();
-    const sectionRect = projectsSection.value.getBoundingClientRect();
-    const topOffset = itemRect.top - sectionRect.top + itemRect.height / 2;
-    imagePreview.value.style.top = `${topOffset}px`;
-  }
-
-  if (prevIndex !== null && prevIndex !== index) {
-    resetTitleAnim(prevIndex);
-    const prevAnim = lottieAnims[prevIndex];
-    const prevEl = lottieEls.value[prevIndex];
-    if (prevEl) prevEl.classList.remove('is-playing');
-    if (prevAnim) {
-      prevAnim.stop();
-      prevAnim.goToAndStop(0, true);
-    }
-  }
-
-  const anim = lottieAnims[index];
-  const el = lottieEls.value[index];
-  const animEl = titleAnimEls.value[index];
-  if (!anim || !animEl) return;
-  lottieStarted[index] = false;
-  if (el) el.classList.add('is-playing');
-
-  if (lottieEndHandlers[index]) {
-    animEl.removeEventListener('transitionend', lottieEndHandlers[index]);
-  }
-
-  const startAnim = () => {
-    if (lottieStarted[index]) return;
-    lottieStarted[index] = true;
-    const holdFrame = lottieHoldFrames[index] || Math.max(anim.getDuration(true) - 1, 0);
-    anim.playSegments([0, holdFrame], true);
-  };
-
-  const styles = window.getComputedStyle(animEl);
-  const toMs = (value) => {
-    const parsed = parseFloat(value);
-    if (Number.isNaN(parsed)) return 0;
-    return value.includes('ms') ? parsed : parsed * 1000;
-  };
-  const totalDelay = toMs(styles.transitionDuration) + toMs(styles.transitionDelay);
-  const startDelay = totalDelay * 0.35;
-
-  window.clearTimeout(lottieTimers[index]);
-  lottieTimers[index] = window.setTimeout(startAnim, startDelay);
-
-  lottieEndHandlers[index] = (event) => {
-    if (event.propertyName !== 'background-size') return;
-    startAnim();
-  };
-
-  animEl.addEventListener('transitionend', lottieEndHandlers[index], { once: true });
-};
-
-const handleListLeave = () => {
-  const index = hoveredIndex.value;
-  hoveredIndex.value = null;
-
-  if (index === null) return;
-
-  window.clearTimeout(lottieTimers[index]);
-  const anim = lottieAnims[index];
-  const el = lottieEls.value[index];
-  const animEl = titleAnimEls.value[index];
-  resetTitleAnim(index);
-  if (animEl && lottieEndHandlers[index]) {
-    animEl.removeEventListener('transitionend', lottieEndHandlers[index]);
-  }
-  lottieStarted[index] = false;
-  if (el) el.classList.remove('is-playing');
-  if (!anim) return;
-  anim.stop();
-  anim.goToAndStop(0, true);
-};
-
-const goToProject = (project) => {
-  if (!project) return;
-  const fromSection = projectsSection.value?.id || "projects";
-  const navigate = () => {
-    router.push({ name: "project-progress", query: { from: fromSection } });
-  };
-  if (startPageTransition) {
-    startPageTransition(navigate);
-  } else {
-    navigate();
-  }
-};
 
 onMounted(async () => {
   const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
@@ -306,59 +102,58 @@ onMounted(async () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const sectionEl = projectsSection.value;
-  if (!sectionEl) return;
+  const header = headerRef.value;
+  const card = cardRef.value;
 
-  const items = sectionEl.querySelectorAll('.project-item');
-  if (!items.length) return;
-  const [firstItem, ...restItems] = Array.from(items);
+  if (!sectionEl || !header || !card) return;
 
-  gsap.set(firstItem, {
-    opacity: 0,
-    y: 60
-  });
+  const headerLines = header.querySelectorAll('.projects-header-line');
+  const headerLabel = header.querySelector('.projects-header-label');
+  const imageWrap = card.querySelector('.featured-card-image-wrap');
+  const content = card.querySelector('.featured-card-content');
 
-  gsap.set(restItems, {
-    opacity: 0,
-    y: 30
-  });
+  // Initial states
+  gsap.set(headerLines, { scaleX: 0 });
+  if (headerLines[0]) gsap.set(headerLines[0], { transformOrigin: 'right center' });
+  if (headerLines[1]) gsap.set(headerLines[1], { transformOrigin: 'left center' });
+  gsap.set(headerLabel, { opacity: 0, y: 8 });
+  gsap.set(imageWrap, { opacity: 0, x: -40, clipPath: 'inset(0 100% 0 0)' });
+  gsap.set(content, { opacity: 0, x: 40 });
 
   projectsTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: sectionEl,
-      start: 'top 60%',
-      toggleActions: 'play none none none'
-    }
+      start: 'top 62%',
+      toggleActions: 'play none none none',
+    },
   });
 
   projectsTimeline
-    .to(firstItem, {
-      opacity: 1,
-      y: 0,
+    .to(headerLines, {
+      scaleX: 1,
       duration: 0.9,
-      ease: 'power3.out'
+      ease: 'power2.inOut',
+      stagger: 0.06,
     })
-    .to(restItems, {
+    .to(headerLabel, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.7,
       ease: 'power3.out',
-      stagger: 0.15
-    }, '-=0.2');
-
-  lottieMediaQuery = window.matchMedia('(max-width: 768px)');
-  lottieMediaHandler = (event) => {
-    if (event.matches) {
-      destroyLottie();
-    } else {
-      initLottie();
-    }
-  };
-  if (lottieMediaQuery.addEventListener) {
-    lottieMediaQuery.addEventListener('change', lottieMediaHandler);
-  } else {
-    lottieMediaQuery.addListener(lottieMediaHandler);
-  }
-  lottieMediaHandler(lottieMediaQuery);
+    }, 0.25)
+    .to(imageWrap, {
+      opacity: 1,
+      x: 0,
+      clipPath: 'inset(0 0% 0 0)',
+      duration: 1.1,
+      ease: 'expo.out',
+    }, 0.45)
+    .to(content, {
+      opacity: 1,
+      x: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+    }, 0.65);
 });
 
 onUnmounted(() => {
@@ -367,68 +162,164 @@ onUnmounted(() => {
     projectsTimeline.kill();
     projectsTimeline = null;
   }
-
-  if (lottieMediaQuery && lottieMediaHandler) {
-    if (lottieMediaQuery.removeEventListener) {
-      lottieMediaQuery.removeEventListener('change', lottieMediaHandler);
-    } else {
-      lottieMediaQuery.removeListener(lottieMediaHandler);
-    }
-  }
-  destroyLottie();
 });
 </script>
 
 <style scoped>
+/* ─── Section wrapper ─────────────────────────────────────── */
 .projects-section {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 4rem) clamp(5rem, 10vw, 9rem);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-.project-item:nth-child(1) { z-index: 3; }
-.project-item:nth-child(2) { z-index: 2; }
-.project-item:nth-child(3) { z-index: 1; }
-.project-item.is-hovered { z-index: 20; }
-.project-item-first { margin-top: 0; }
-.project-item:last-child { border-bottom: none; }
-
-.project-index {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  width: 4ch;
-  margin-right: 1.2em;
-  transform: translateY(-1.40em);
+/* ─── Header ─────────────────────────────────────────────── */
+.projects-header {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.project-index-mobile {
-  display: none;
-  font-size: 0.95rem;
-  margin-right: 0.5em;
+.projects-header-line {
+  flex: 1;
+  height: 1px;
+  background: var(--project-border-color);
 }
 
-.project-title {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  letter-spacing: -0.02em;
+.projects-header-label {
+  font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.project-title-text,
-.project-title-base,
-.project-title-anim {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-stroke: 0.45px transparent;
-  paint-order: stroke fill;
+/* ─── Featured card ──────────────────────────────────────── */
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  will-change: transform, box-shadow;
 }
 
-.project-title-text {
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  isolation: isolate;
+.featured-card.is-hovered {
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
 }
 
-.project-title-base {
-  background: linear-gradient(to bottom, var(--theme-headline-from), var(--theme-headline-via), var(--theme-headline-to));
+/* ─── Image side ─────────────────────────────────────────── */
+.featured-card-image-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+.featured-card-image-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.featured-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.featured-card.is-hovered .featured-card-img {
+  transform: scale(1.055);
+}
+
+.featured-card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--card-img-overlay);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.featured-card.is-hovered .featured-card-image-overlay {
+  opacity: 0.6;
+}
+
+/* Index badge */
+.featured-card-index {
+  position: absolute;
+  top: 1rem;
+  left: 1.1rem;
+  z-index: 10;
+}
+
+.featured-card-index-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+/* ─── Content side ───────────────────────────────────────── */
+.featured-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(0.5rem, 2vw, 1rem) 0;
+}
+
+.featured-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.featured-card-type {
+  font-size: clamp(0.72rem, 1.1vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--project-meta-color);
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--card-tag-border);
+  border-radius: 999px;
+  background: var(--card-tag-bg);
+}
+
+.featured-card-title {
+  margin: 0;
+  line-height: 1.0;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-card-title-base {
+  background: linear-gradient(
+    to bottom,
+    var(--theme-headline-from),
+    var(--theme-headline-via),
+    var(--theme-headline-to)
+  );
   color: transparent;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -437,195 +328,187 @@ onUnmounted(() => {
   transform: translateZ(0);
 }
 
-.project-title-anim {
-  line-height: inherit;
-  background-image: linear-gradient(90deg, var(--project-hover-color), var(--project-hover-color));
-  background-size: 0% 100%;
-  background-repeat: no-repeat;
-  background-position: left center;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: background-size 0.7s ease;
-  backface-visibility: hidden;
-  will-change: background-size;
+.featured-card-desc {
+  margin: 0;
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  line-height: 1.78;
+  color: var(--project-meta-color);
+  max-width: 52ch;
 }
 
-.project-item:hover .project-title-anim {
-  background-size: 100% 100%;
+/* ─── Tech tags ──────────────────────────────────────────── */
+.featured-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.project-title-anim.is-resetting {
-  transition: none;
+.featured-tag {
+  font-size: clamp(0.68rem, 1vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--project-meta-color);
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: var(--card-tag-bg);
+  border: 1px solid var(--card-tag-border);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.project-title-lottie {
-  transform: translateY(0.28em);
-  transition: opacity 200ms ease, transform 200ms ease;
-  will-change: opacity, transform;
+.featured-card.is-hovered .featured-tag {
+  border-color: var(--card-tag-border-hover);
+  background: var(--card-tag-bg-hover);
+  color: var(--project-title-color);
 }
 
-.project-title-lottie.is-playing {
-  opacity: 1;
-  transform: translateY(0.28em);
+/* ─── CTA button ─────────────────────────────────────────── */
+.featured-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: fit-content;
+  text-decoration: none;
+  font-size: clamp(0.82rem, 1.3vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--theme-cta-text);
+  background: var(--theme-cta-bg);
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+  margin-top: 0.25rem;
 }
 
-.project-title-lottie.is-playing :deep(path) {
-  stroke: var(--project-hover-color) !important;
-  fill: var(--project-hover-color) !important;
+.featured-card-cta:hover,
+.featured-card-cta:focus-visible {
+  background: transparent;
+  color: var(--project-title-color);
+  border-color: var(--project-border-color);
+  transform: translateX(3px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  outline: none;
 }
 
-.project-title-lottie :deep(svg) {
-  width: 100%;
-  height: 100%;
-  display: block;
+.featured-cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-tags {
-  padding-left: calc(4ch + 1.2em + 0.3em);
+.featured-card-cta:hover .featured-cta-arrow,
+.featured-card-cta:focus-visible .featured-cta-arrow {
+  transform: translate(3px, -3px);
 }
 
-.project-tag {
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-}
-
-.project-tag:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: -0.55rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--project-dot-color);
-}
-
-.project-image-preview {
-  right: clamp(1rem, 5vw, 4rem);
-  transform: translateX(1.75rem) translateY(-50%) skewX(-8deg) scale(0.85);
-  transform-origin: right center;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.project-image-preview.is-visible {
-  opacity: 1;
-  transform: translateX(1.75rem) translateY(-50%) skewX(-8deg) scale(1);
-}
-
-.project-image-preview img.is-active {
-  opacity: 1;
-}
-
+/* ─── Theme tokens ───────────────────────────────────────── */
 :global([data-theme="dark"]) {
-  --project-border-color: rgba(255, 255, 255, 0.15);
+  --project-border-color: rgba(255, 255, 255, 0.13);
   --project-title-color: #f2f0ea;
-  --project-meta-color: rgba(242, 240, 234, 0.7);
-  --project-dot-color: rgba(242, 240, 234, 0.5);
+  --project-meta-color: rgba(242, 240, 234, 0.65);
   --project-hover-color: #354F52;
-  --project-image-overlay: rgba(0, 0, 0, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.032);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(255, 255, 255, 0.22);
+  --card-shadow-hover: 0 32px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --card-img-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.04) 100%);
+  --card-tag-bg: rgba(255, 255, 255, 0.055);
+  --card-tag-border: rgba(255, 255, 255, 0.1);
+  --card-tag-bg-hover: rgba(255, 255, 255, 0.1);
+  --card-tag-border-hover: rgba(255, 255, 255, 0.22);
 }
 
 :global([data-theme="light"]) {
-  --project-border-color: rgba(15, 23, 42, 0.15);
+  --project-border-color: rgba(15, 23, 42, 0.14);
   --project-title-color: var(--theme-text-strong);
   --project-meta-color: var(--theme-text-muted);
-  --project-dot-color: var(--theme-text-soft);
   --project-hover-color: #18969E;
-  --project-image-overlay: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.55);
+  --card-border: rgba(15, 23, 42, 0.09);
+  --card-border-hover: rgba(15, 23, 42, 0.22);
+  --card-shadow-hover: 0 28px 70px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  --card-img-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 100%);
+  --card-tag-bg: rgba(15, 23, 42, 0.04);
+  --card-tag-border: rgba(15, 23, 42, 0.1);
+  --card-tag-bg-hover: rgba(15, 23, 42, 0.08);
+  --card-tag-border-hover: rgba(15, 23, 42, 0.2);
 }
 
+/* Fallback */
 :root {
-  --project-border-color: rgba(255, 255, 255, 0.15);
+  --project-border-color: rgba(255, 255, 255, 0.13);
   --project-title-color: var(--theme-text-strong);
   --project-meta-color: var(--theme-text-muted);
-  --project-dot-color: var(--theme-text-soft);
-  --project-hover-color: #9c6a4b;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(255, 255, 255, 0.22);
+  --card-shadow-hover: 0 32px 80px rgba(0, 0, 0, 0.5);
+  --card-img-overlay: linear-gradient(135deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.04) 100%);
+  --card-tag-bg: rgba(255, 255, 255, 0.055);
+  --card-tag-border: rgba(255, 255, 255, 0.1);
+  --card-tag-bg-hover: rgba(255, 255, 255, 0.1);
+  --card-tag-border-hover: rgba(255, 255, 255, 0.22);
 }
 
-@media (max-width: 1024px) {
-  .project-image-preview {
-    width: 260px;
-    height: 210px;
-  }
-}
-
-@media (max-width: 768px) {
-  .projects-section {
-    padding: 1rem 1rem 3rem;
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+    gap: clamp(1.25rem, 3vw, 2rem);
   }
 
-  .project-mobile-image {
-    display: block;
-    margin-bottom: 0.75rem;
-  }
-
-  .project-mobile-image img {
+  .featured-card-image-wrap {
     aspect-ratio: 16 / 9;
-    max-height: 220px;
   }
 
-  .project-item {
-    gap: 0;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 2.5rem;
-    border-bottom: none;
+  .featured-card-title {
+    font-size: clamp(2rem, 7vw, 3rem);
   }
 
-  .project-item-first {
-    margin-top: 0;
-  }
-
-  .project-item:last-child {
-    margin-bottom: 1.5rem;
-  }
-
-  .project-index {
-    display: none;
-  }
-
-  .project-index-mobile {
-    display: inline-block;
-    transform: translateY(-0.9em);
-  }
-
-  .project-tags {
-    gap: 0.75rem;
-    padding-left: 2rem;
-  }
-
-  .project-image-preview {
-    display: none;
-  }
-
-  .project-item:hover .project-title-anim {
-    background-size: 0% 100%;
-  }
-
-  .project-title-anim {
-    transition: none;
-  }
-
-  .projects-divider {
-    display: none;
+  .featured-card-desc {
+    max-width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  .project-item {
+@media (max-width: 600px) {
+  .projects-section {
+    padding: 0 1rem clamp(4rem, 12vw, 6rem);
+  }
+
+  .projects-header {
+    gap: 1rem;
     margin-bottom: 2rem;
   }
 
-  .project-mobile-image {
-    margin-bottom: 0.5rem;
+  .featured-card {
+    padding: 1.1rem;
+    border-radius: 16px;
+  }
+
+  .featured-card-image-wrap {
+    border-radius: 10px;
+  }
+
+  .featured-card-content {
+    gap: 1rem;
+  }
+
+  .featured-card-title {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .featured-card,
+  .featured-card-img,
+  .featured-card-cta,
+  .featured-cta-arrow,
+  .featured-tag {
+    transition: none !important;
   }
 }
 </style>
-
-
-
-
