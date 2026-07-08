@@ -101,7 +101,7 @@
         <span class="social-circle">
           <i class="bi bi-linkedin text-lg"></i>
         </span>
-        <span class="social-label">Mohamed Asan</span>
+        <span class="social-label">LINKEDIN</span>
       </a>
       <a
         class="social-item group"
@@ -113,7 +113,7 @@
         <span class="social-circle">
           <i class="bi bi-github text-lg"></i>
         </span>
-        <span class="social-label">Mohamed Asan</span>
+        <span class="social-label">GITHUB</span>
       </a>
     </aside>
   </section>

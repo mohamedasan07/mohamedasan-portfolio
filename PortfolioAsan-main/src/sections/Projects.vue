@@ -203,13 +203,13 @@ onUnmounted(() => {
 /* ─── Featured card ──────────────────────────────────────── */
 .featured-card {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: 0.97fr 1.03fr;
+  gap: clamp(2.5rem, 4vw, 3.5rem);
   align-items: center;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 20px;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.2rem, 2.5vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
   transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   will-change: transform, box-shadow;
@@ -226,7 +226,7 @@ onUnmounted(() => {
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 14;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
 }
 
@@ -333,7 +333,7 @@ onUnmounted(() => {
   font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   line-height: 1.78;
   color: var(--project-meta-color);
-  max-width: 52ch;
+  max-width: 520px;
 }
 
 /* ─── Tech tags ──────────────────────────────────────────── */
@@ -380,7 +380,7 @@ onUnmounted(() => {
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease,
               transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.3s ease;
-  margin-top: 0.25rem;
+  margin-top: -0.375rem;
 }
 
 .featured-card-cta:hover,
