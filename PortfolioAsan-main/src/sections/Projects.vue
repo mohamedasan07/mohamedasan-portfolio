@@ -461,7 +461,7 @@ onUnmounted(() => {
   }
 
   .featured-card-image-wrap {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 4;
   }
 
   .featured-card-title {
